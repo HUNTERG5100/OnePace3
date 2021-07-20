@@ -86,7 +86,7 @@ episodes.push(new Chapter(
     false
 ));
 
-let infoLink = new ModuleRequest('', 'get', emptyKeyValue, null);
+let infoLink = new ModuleRequest('https://www.google.com', 'get', emptyKeyValue, null);
 let infoPageObject = new Info(
     new Extra([new Commands('', emptyKeyValue)], emptyKeyValue),
     new JavascriptConfig(false, false, ''),
