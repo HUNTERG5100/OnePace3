@@ -212,10 +212,6 @@ var parsedJson = JSON.parse(savedData.innerHTML);
 let output = [];
 let emptyKeyValue = [new KeyValue('','')];
 
-    
-var topLayout = new Layout(new Insets(0, 0, 0, 0), 1, 2, 3, 1, 500, new Size(400, 400), new Ratio('width', 1, 1), new Size(0, 0), 0, 0);
-
-
 const script = document.querySelector('script').innerHTML.replace('/*', '').replace('*/', '');
 const data = JSON.parse(script);
 const info = data['info'];
