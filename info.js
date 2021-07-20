@@ -73,42 +73,24 @@ var savedData = document.getElementById('ketsu-final-data');
 var parsedJson = JSON.parse(savedData.innerHTML);
 let emptyKeyValue = [new KeyValue('', '')];
 var episodes = [];
-var type = ' ';
+var type = '';
 var status = '';
-var genres = [];
-var desc = '';
-var animeInfo = document.querySelector('.anime_info_body');
-var title = animeInfo.querySelector('h1').innerText;
-var image = animeInfo.querySelector('img').src;
-image = new ModuleRequest(image, 'get', emptyKeyValue, null);
-var forData = document.querySelectorAll('.type');
-for (var x = 0; x < forData.length; x++) {
-    var text = '' + forData[x].innerText;
-    if (text.includes('Type: ')) {
-        type = text.replace('Type: ').replace('undefined', '');
-    }
-    if (text.includes('Genre: ')) {
-        var gen = forData[x].querySelectorAll('a');
-        for (var y = 0; y < gen.length; y++) {
-            genres.push(gen[y].innerText.replace(',', ''));
-        }
-    }
-    if (text.includes('Plot Summary: ')) {
-        desc = text.replace('Plot Summary: ').replace('undefined', '');
-    }
-    if (text.includes('Status: ')) {
-        status = text.replace('Status: ', '');
-    }
-    if (text.includes('Released: ')) {
-        var show_year = text.replace('Released: ', '');
-    }
-}
-var chapters = document.querySelector('.active').getAttribute('ep_end');
+let genres = ['NOGENRE'];
+let desc = 'One Pace Show';
+let title = "OnePace";
+let image = new ModuleRequest('https://pbs.twimg.com/media/EUolT2OWsAYzRM8.jpg', 'get', emptyKeyValue, null);
 
-let anime_id = document.querySelector('.anime_info_episodes_next > input').getAttribute('value');
-let respUrl = 'https://' + parsedJson.responseInfo.responseUrl.split('/')[2];
-let extraInfo = [new KeyValue('respUrl', respUrl)];
+episodes.push(new Chapter(
+    'Romance Dawn 01: The Dawn of Adventure',
+    'https://onepace123.s3.us-east-2.amazonaws.com/Romance+Dawn/Romance+Dawn+01+-+The+Dawn+of+Adventure.mp4',
+    false
+));
 
-let infoPageObject = new Info(new ModuleRequest('https://ajax.gogo-load.com/ajax/load-list-episode?ep_start=0&ep_end='+chapters+'&id='+anime_id, 'get', emptyKeyValue, null), new Extra([new Commands('', emptyKeyValue)], extraInfo), new JavascriptConfig(false, false, ''), new Output(image, title, parsedJson.request, desc, genres, status, show_year, type, 'Eps: '+chapters, episodes));
+let infoLink = new ModuleRequest('', 'get', emptyKeyValue, null);
+let infoPageObject = new Info(
+    new Extra([new Commands('', emptyKeyValue)], emptyKeyValue),
+    new JavascriptConfig(false, false, ''),
+    new Output(image, title, parsedJson.request, desc, genres, 'unknown', 'unknown', 'unknown', 'unknown', episodes)
+);
 var finalJson = JSON.stringify(infoPageObject);
 savedData.innerHTML = finalJson;
