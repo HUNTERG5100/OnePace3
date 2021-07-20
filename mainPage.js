@@ -216,21 +216,21 @@ const script = document.querySelector('script').innerHTML.replace('/*', '').repl
 const data = JSON.parse(script);
 const info = data['info'];
 
-let onePaceData = [];
+let onePaceDataArray = [];
 let onePaceImage = new ModuleRequest(info['image'], 'get', emptyKeyValue, null);
-let onePaceLink = new ModuleRequest('', 'get', emptyKeyValue, null);
+let onePaceLink = new ModuleRequest('https://www.google.com', 'get', emptyKeyValue, null);
 
-let onePace = new Data(
+let onePaceDataObject = new Data(
     onePaceImage, 'One Pace', 'One Pace Show',
     info['field1'], 'unknown', 'unknown', 'unknown',
     false, onePaceLink
 );
 
-onePaceData.push(onePace);
+onePaceDataArray.push(onePaceDataObject);
 output.push(new Output(
     CellDesings.normal1, Orientation.horizontal, DefaultLayouts.wide,
     Paging.leading, new Section('One Pace', true),
-    null, onePaceData)
+    null, onePaceDataArray)
 );
 
 var mainPageLink = 'https://raw.githubusercontent.com/HUNTERG5100/OnePace3/main/one_pace_links.json';
