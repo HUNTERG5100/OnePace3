@@ -70,7 +70,7 @@ var emptyKeyValue = [new KeyValue('', '')];
 var savedData = document.getElementById('ketsu-final-data');
 var parsedJson = JSON.parse(savedData.innerHTML);
 
-output.push(new NeedsResolver('', new ModuleRequest(
+output.push(new NeedsResolver('GOGO-PLAY', new ModuleRequest(
     'https://onepace123.s3.us-east-2.amazonaws.com/Romance+Dawn/Romance+Dawn+01+-+The+Dawn+of+Adventure.mp4',
     'get',
     emptyKeyValue,
